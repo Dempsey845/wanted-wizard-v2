@@ -47,9 +47,10 @@ public class PlayerMovement : MonoBehaviour
     void HandleMovement()
     {
         Vector3 moveDirection = new(moveInputValue.x, 0, moveInputValue.y);
-        transform.Translate(moveSpeed * Time.fixedDeltaTime * moveDirection);
+        Vector3 move = moveSpeed * Time.fixedDeltaTime * transform.TransformDirection(moveDirection.normalized);
+        rb.MovePosition(rb.position + move);
     }
-
+    
     void Jump()
     {
         rb.AddRelativeForce(Vector3.up * jumpForce);
