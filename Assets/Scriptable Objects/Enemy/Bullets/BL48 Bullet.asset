@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86042de26c715c849bc984f557b37993, type: 3}
   m_Name: BL48 Bullet
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  BulletPrefab: {fileID: 2266237158629658775, guid: 969196676491f294fa70a165f8938205, type: 3}
+  BulletHitFXPrefab: {fileID: 3412621344897485337, guid: 86755f81286e1b24cad5df9725948921, type: 3}
   moveSpeed: 20
+  maxLifetime: 5

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771a9f464c9f81d43abee8f7d7c7b73b, type: 3}
+  m_Script: {fileID: 11500000, guid: 44a8214b447f9f742a4ebd6aa0ff913a, type: 3}
   m_Name: BL48
   m_EditorClassIdentifier: 
-  WeaponPrefab: {fileID: 0}
-  FireRate: 0.2
+  UseRate: 2
+  WeaponPrefab: {fileID: 367921063505058622, guid: 9ec87352e6eedc24daa5ffe822dfba43, type: 3}
   BulletSO: {fileID: 11400000, guid: 7a9047c37783a6d43a3d145ee0d7983d, type: 2}

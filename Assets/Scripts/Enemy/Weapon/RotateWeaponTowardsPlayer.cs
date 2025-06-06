@@ -2,39 +2,30 @@ using UnityEngine;
 
 public class RotateWeaponTowardsPlayer : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] Transform weaponPivotPoint;
-
     [Header("Rotation Settings")]
     [SerializeField] float weaponRotationSpeed = 10f;
-    [SerializeField, Range(0f, 180f)] float maxViewAngle = 180f;
 
     [Header("Debug")]
     [SerializeField] bool showDebug = false;
 
-    Transform playerTransform;
+    Transform weaponPivotPoint;
+    Enemy enemy;
 
     void Start()
     {
-        Player player = FindFirstObjectByType<Player>();
-        if (player != null)
-        {
-            playerTransform = player.transform;
-        }
-        else
-        {
-            Debug.LogError("Player not found in scene.");
-        }
+        enemy = GetComponentInParent<Enemy>();
+        
+        EnemyActiveWeapon enemyActiveWeapon = GetComponentInParent<EnemyActiveWeapon>();
+        weaponPivotPoint = enemyActiveWeapon.CurrentWeapon.WeaponPivot;
     }
 
     void Update()
     {
-        if (playerTransform == null) return;
+        if (!enemy || !enemy.Player) return;
 
-        Vector3 directionToPlayer = playerTransform.position - transform.parent.position;
-        float angleToPlayer = Vector3.Angle(transform.parent.forward, directionToPlayer);
-
-        if (angleToPlayer <= maxViewAngle)
+        Transform playerTransform = enemy.Player.transform;
+        
+        if (enemy.PlayerInFOV)
         {
             RotateWeaponTowards(playerTransform.position);
             if (showDebug) Debug.Log("Player in view");
