@@ -4976,7 +4976,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1870049210506837163}
-  - component: {fileID: 598876659737063045}
   - component: {fileID: 2553278033238886197}
   - component: {fileID: 7458531728156665198}
   m_Layer: 0
@@ -5002,29 +5001,6 @@ Transform:
   - {fileID: 5950460913958967140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &598876659737063045
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6886542164232325856}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 0.15
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2553278033238886197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5065,4 +5041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 10
-  maxLifetime: 5
+  _maxLifetime: 5
+  absorbRadius: 1
+  enemyProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 128

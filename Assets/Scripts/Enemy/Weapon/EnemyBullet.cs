@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyBullet : Projectile
 {
-    [SerializeField] EnemyBulletSO bulletSO;
+    public EnemyBulletSO bulletSO;
 
     const string PLAYER_TAG = "Player";
 
