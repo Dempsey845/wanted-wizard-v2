@@ -11,17 +11,15 @@ public class RotateWeaponTowardsPlayer : MonoBehaviour
     Transform weaponPivotPoint;
     Enemy enemy;
 
-    void Start()
+    public void Init(Enemy enemy, Transform weaponPivotPoint)
     {
-        enemy = GetComponentInParent<Enemy>();
-        
-        EnemyActiveWeapon enemyActiveWeapon = GetComponentInParent<EnemyActiveWeapon>();
-        weaponPivotPoint = enemyActiveWeapon.CurrentWeapon.WeaponPivot;
+        this.enemy = enemy;
+        this.weaponPivotPoint = weaponPivotPoint;
     }
 
     void Update()
     {
-        if (!enemy || !enemy.Player) return;
+        if (!enemy || !enemy.Player || !weaponPivotPoint) return;
 
         Transform playerTransform = enemy.Player.transform;
         

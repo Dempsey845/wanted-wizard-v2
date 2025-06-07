@@ -1,31 +1,16 @@
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : Projectile
 {
     [SerializeField] EnemyBulletSO bulletSO;
 
-    Rigidbody rb;
-
-    float lifetime;
-
     const string PLAYER_TAG = "Player";
 
-    void Awake()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    void Start()
-    {
-        rb.linearVelocity = transform.forward * bulletSO.moveSpeed;
-    }
-
-    void Update()
-    {
-        lifetime += Time.deltaTime;
-
-        if (lifetime > bulletSO.maxLifetime) Destroy(this.gameObject);
-    }
+        Init(bulletSO.moveSpeed, bulletSO.maxLifetime);
+        base.Start();
+    } 
 
     void OnTriggerEnter(Collider other)
     {

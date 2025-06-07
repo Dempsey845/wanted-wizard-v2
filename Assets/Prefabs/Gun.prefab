@@ -46,10 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponPivot: {fileID: 2469808990389309885}
-  WeaponSO: {fileID: 11400000, guid: 324efb110b078a340b0168c39abb4b74, type: 2}
-  WeaponCoolingDown: 0
-  CanUseWeapon: 1
-  enemyGunSO: {fileID: 11400000, guid: 324efb110b078a340b0168c39abb4b74, type: 2}
+  WeaponSO: {fileID: 11400000, guid: 5bf5dfd40d80f24468217a47a2571981, type: 2}
+  enemyGunSO: {fileID: 11400000, guid: 5bf5dfd40d80f24468217a47a2571981, type: 2}
   firePoint: {fileID: 1259585509188092381}
   muzzleFlashParticleSystem: {fileID: 5120653784977500993}
 --- !u!1 &3439271496991572715

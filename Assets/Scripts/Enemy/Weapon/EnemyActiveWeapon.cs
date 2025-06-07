@@ -7,8 +7,13 @@ public class EnemyActiveWeapon : MonoBehaviour
     public EnemyWeaponSO CurrentWeaponSO { get; private set; }
     public EnemyWeapon CurrentWeapon { get; private set; }
 
+    RotateWeaponTowardsPlayer rotateWeaponTowardsPlayer;
+    Enemy enemy;
+
     void Start()
     {
+        rotateWeaponTowardsPlayer = GetComponent<RotateWeaponTowardsPlayer>();
+        enemy = GetComponentInParent<Enemy>();
         SwitchWeapon(startWeaponSO);
     }
 
@@ -23,6 +28,8 @@ public class EnemyActiveWeapon : MonoBehaviour
 
         CurrentWeapon = newWeapon;
         CurrentWeaponSO = newWeaponSO;
+
+        rotateWeaponTowardsPlayer.Init(enemy, CurrentWeapon.WeaponPivot);
     }
 
     public void UseWeapon()
