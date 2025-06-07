@@ -8,6 +8,9 @@ public class MonsterProjectile : Projectile
     [SerializeField] float firebackDelay = 2f;
     [SerializeField] float absorbRadius = 5f;
     [SerializeField] LayerMask enemyProjectileLayer;
+    [SerializeField] float spreadAngle = 5f;
+    [SerializeField] int reverseFireWeight = 4;
+    [SerializeField] int randomFireWeight = 1;
 
     bool canFireback = true;
 
@@ -46,16 +49,58 @@ public class MonsterProjectile : Projectile
     {
         if (!canFireback) return;
 
+        // If true fireback the projectiles back towards the enemy, else fire in random directions
+        bool firebackInReverseDirection = Random.Range(0, reverseFireWeight + randomFireWeight) < reverseFireWeight;
+
         Vector3 origin = collider.transform.position;
-        Vector3[] directions = GetRandomDirections(BulletManager.Instance.GetMaxBulletCount(), BulletManager.Instance.GetFirebackRadius(), origin);
+
+        if (firebackInReverseDirection)
+        {
+            // Fire in reverse direction of the incoming bullet
+            FireInReverseDirection(enemyBullet, origin);
+        }
+        else
+        {
+            FireInRandomDirection(enemyBullet, origin);
+        }
+
+        StartCoroutine(FirebackCooldown());
+    }
+
+    void FireInRandomDirection(EnemyBullet enemyBullet, Vector3 origin)
+    {
+        Vector3[] directions = GetRandomDirections(
+                        BulletManager.Instance.GetMaxBulletCount(),
+                        BulletManager.Instance.GetFirebackRadius(),
+                        origin
+                    );
 
         foreach (Vector3 direction in directions)
         {
             Debug.DrawRay(origin, direction * 5f, Color.red, 5f);
             Instantiate(enemyBullet.bulletSO.BulletPrefab, origin, Quaternion.LookRotation(direction));
         }
+    }
 
-        StartCoroutine(FirebackCooldown());
+    void FireInReverseDirection(EnemyBullet enemyBullet, Vector3 origin)
+    {
+        Vector3 reverseDirection = -enemyBullet.GetComponent<Rigidbody>().linearVelocity.normalized;
+
+        if (reverseDirection != Vector3.zero)
+        {
+            int count = BulletManager.Instance.GetMaxBulletCount() / 2;
+
+            for (int i = 0; i < count; i++)
+            {
+                // Calculate slight spread using rotation offset
+                float angleOffset = (i - (count - 1) / 2f) * spreadAngle;
+                Quaternion rotationOffset = Quaternion.AngleAxis(angleOffset, Vector3.up);
+                Vector3 spreadDirection = rotationOffset * reverseDirection;
+
+                Debug.DrawRay(origin, spreadDirection * 5f, Color.green, 5f);
+                Instantiate(enemyBullet.bulletSO.BulletPrefab, origin, Quaternion.LookRotation(spreadDirection));
+            }
+        }
     }
 
     IEnumerator FirebackCooldown()
