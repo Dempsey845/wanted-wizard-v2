@@ -10,6 +10,7 @@ public class BulletManager : MonoBehaviour
 
     [SerializeField] TMP_Text bulletCountText;
     [SerializeField] int maxBullets = 8;
+    [SerializeField] float firebackRadius = 3f;
 
     void Awake()
     {
@@ -26,7 +27,17 @@ public class BulletManager : MonoBehaviour
 
     public void AddBullet(EnemyBulletSO enemyBulletSO)
     {
+        if (enemyBulletSOs.Count >= maxBullets) return;
+
         enemyBulletSOs.Add(enemyBulletSO);
-        bulletCountText.text = enemyBulletSOs.Count.ToString();
+        UpdateCountText();
     }
+
+    public void UpdateCountText()
+    {
+        bulletCountText.text = enemyBulletSOs.Count.ToString() + "/" + maxBullets.ToString();
+    }
+
+    public int GetMaxBulletCount() { return maxBullets; }
+    public float GetFirebackRadius() { return firebackRadius; }
 }

@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
         rb.linearVelocity = transform.forward * moveSpeed;
     }
 
-    void Update()
+    public virtual void Update()
     {
         lifetime += Time.deltaTime;
 

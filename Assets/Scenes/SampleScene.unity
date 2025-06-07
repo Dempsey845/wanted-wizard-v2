@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4187d66ff9e428040a4a6524b1dcfd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletCount: 0
+  enemyBulletSOs: []
   bulletCountText: {fileID: 513019274}
   maxBullets: 8
 --- !u!1 &410087039
@@ -8735,6 +8735,7 @@ MonoBehaviour:
   monsterPrefab: {fileID: 6886542164232325856, guid: 0acc78857691d7a468943cfe7caf5530, type: 3}
   firePoint: {fileID: 1081402149}
   attackRate: 2
+  maxOffsetForFireback: 0.1
 --- !u!1 &2030909943
 GameObject:
   m_ObjectHideFlags: 0
